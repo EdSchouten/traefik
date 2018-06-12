@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"strings"
 	"sync"
 	"time"
 
@@ -148,9 +149,10 @@ func oidcSetDownstreamHeaders(config *types.OIDC, provider *oidc.Provider, ctx c
 	// Set headers based on required ID token fields and custom claims.
 	r.Header.Set("X-Auth-Subject", idToken.Subject)
 	var claims struct {
-		Name          string `json:"name"`
-		Email         string `json:"email"`
-		EmailVerified bool   `json:"email_verified"`
+		Name          string   `json:"name"`
+		Email         string   `json:"email"`
+		EmailVerified bool     `json:"email_verified"`
+		Groups        []string `json:"groups"`
 	}
 	if err := idToken.Claims(&claims); err == nil {
 		if claims.Name != "" {
@@ -158,6 +160,9 @@ func oidcSetDownstreamHeaders(config *types.OIDC, provider *oidc.Provider, ctx c
 		}
 		if claims.Email != "" && claims.EmailVerified {
 			r.Header.Set("X-Auth-Email", claims.Email)
+		}
+		if len(claims.Groups) != 0 {
+			r.Header.Set("X-Auth-Groups", strings.Join(claims.Groups, ","))
 		}
 	}
 	return nil
@@ -253,6 +258,11 @@ func OIDC(oidcProviderRefresher *OIDCProviderRefresher, sharedKey []byte, config
 		}
 		http.Redirect(w, r, originatingURL.String(), http.StatusSeeOther)
 	} else if r.URL.Path == "/.traefik-oidc-logout" {
+		if r.Method != http.MethodGet {
+			http.Error(w, "OIDC logout only processes GET requests", http.StatusMethodNotAllowed)
+			return
+		}
+
 		// OpenID Connect Front-Channel Logout.
 		http.SetCookie(w, &http.Cookie{
 			Name:     oidcCookieName,
