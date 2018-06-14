@@ -251,10 +251,11 @@ func OIDC(oidcProviderRefresher *OIDCProviderRefresher, sharedKey []byte, config
 			OAuth2Token: *token,
 			IDToken:     oidcExtractIDToken(token, ""),
 		})
-		originatingURL := url.URL{
-			Scheme: scheme,
-			Host:   r.Host,
-			Path:   cookie.ReturnPath,
+		originatingURL, err := callbackURL.Parse(cookie.ReturnPath)
+		if err != nil {
+			log.Print(err)
+			http.Error(w, "Failed to redirect back to originating page", http.StatusInternalServerError)
+			return
 		}
 		http.Redirect(w, r, originatingURL.String(), http.StatusSeeOther)
 	} else if r.URL.Path == "/.traefik-oidc-logout" {
