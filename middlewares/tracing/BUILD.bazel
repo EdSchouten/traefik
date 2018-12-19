@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "entrypoint.go",
+        "forwarder.go",
+        "status_code.go",
+        "wrapper.go",
+    ],
+    importpath = "github.com/containous/traefik/middlewares/tracing",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//middlewares:go_default_library",
+        "//tracing:go_default_library",
+        "//vendor/github.com/containous/alice:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "entrypoint_test.go",
+        "forwarder_test.go",
+        "mock_tracing_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//tracing:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/log:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

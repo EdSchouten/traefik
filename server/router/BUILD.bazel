@@ -1,0 +1,58 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "route_appender_aggregator.go",
+        "route_appender_factory.go",
+        "router.go",
+        "rules.go",
+    ],
+    importpath = "github.com/containous/traefik/server/router",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//api:go_default_library",
+        "//config:go_default_library",
+        "//config/static:go_default_library",
+        "//log:go_default_library",
+        "//metrics:go_default_library",
+        "//middlewares/accesslog:go_default_library",
+        "//middlewares/recovery:go_default_library",
+        "//middlewares/requestdecorator:go_default_library",
+        "//middlewares/tracing:go_default_library",
+        "//provider/acme:go_default_library",
+        "//responsemodifiers:go_default_library",
+        "//safe:go_default_library",
+        "//server/middleware:go_default_library",
+        "//server/service:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/containous/alice:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "route_appender_aggregator_test.go",
+        "router_test.go",
+        "rules_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//config:go_default_library",
+        "//config/static:go_default_library",
+        "//middlewares/accesslog:go_default_library",
+        "//middlewares/requestdecorator:go_default_library",
+        "//ping:go_default_library",
+        "//responsemodifiers:go_default_library",
+        "//server/middleware:go_default_library",
+        "//server/service:go_default_library",
+        "//testhelpers:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/containous/alice:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

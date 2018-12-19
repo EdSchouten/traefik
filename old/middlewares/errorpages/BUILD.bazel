@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["error_pages.go"],
+    importpath = "github.com/containous/traefik/old/middlewares/errorpages",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/middlewares:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/vulcand/oxy/forward:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["error_pages_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/types:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+        "//vendor/github.com/urfave/negroni:go_default_library",
+    ],
+)

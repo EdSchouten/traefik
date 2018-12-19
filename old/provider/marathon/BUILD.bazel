@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "config.go",
+        "convert_types.go",
+        "marathon.go",
+        "readiness.go",
+    ],
+    importpath = "github.com/containous/traefik/old/provider/marathon",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//job:go_default_library",
+        "//old/log:go_default_library",
+        "//old/provider:go_default_library",
+        "//old/provider/label:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/gambol99/go-marathon:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "builder_test.go",
+        "config_segment_test.go",
+        "config_test.go",
+        "fake_client_test.go",
+        "readiness_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/provider/label:go_default_library",
+        "//old/provider/marathon/mocks:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/gambol99/go-marathon:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/mock:go_default_library",
+    ],
+)

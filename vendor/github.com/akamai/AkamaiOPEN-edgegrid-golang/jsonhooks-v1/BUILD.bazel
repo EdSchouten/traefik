@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "errors.go",
+        "jsonhooks.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/akamai/AkamaiOPEN-edgegrid-golang/jsonhooks-v1",
+    importpath = "github.com/akamai/AkamaiOPEN-edgegrid-golang/jsonhooks-v1",
+    visibility = ["//visibility:public"],
+)

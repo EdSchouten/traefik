@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "archive_ostype.go",
+        "archiveostypes_string.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/sacloud/libsacloud/sacloud/ostype",
+    importpath = "github.com/sacloud/libsacloud/sacloud/ostype",
+    visibility = ["//visibility:public"],
+)

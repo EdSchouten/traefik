@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "benchmark.go",
+        "check.go",
+        "checkers.go",
+        "helpers.go",
+        "printer.go",
+        "reporter.go",
+        "run.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/go-check/check",
+    importpath = "github.com/go-check/check",
+    visibility = ["//visibility:public"],
+)

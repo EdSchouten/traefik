@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "account.go",
+        "contact.go",
+        "domain.go",
+        "goinwx.go",
+        "nameserver.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/smueller18/goinwx",
+    importpath = "github.com/smueller18/goinwx",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/fatih/structs:go_default_library",
+        "//vendor/github.com/kolo/xmlrpc:go_default_library",
+        "//vendor/github.com/mitchellh/mapstructure:go_default_library",
+    ],
+)

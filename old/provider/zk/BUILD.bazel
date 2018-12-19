@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["zk.go"],
+    importpath = "github.com/containous/traefik/old/provider/zk",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/provider:go_default_library",
+        "//old/provider/kv:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store/zookeeper:go_default_library",
+    ],
+)

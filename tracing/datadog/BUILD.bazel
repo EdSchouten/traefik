@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["datadog.go"],
+    importpath = "github.com/containous/traefik/tracing/datadog",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace/opentracer:go_default_library",
+        "//vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer:go_default_library",
+    ],
+)

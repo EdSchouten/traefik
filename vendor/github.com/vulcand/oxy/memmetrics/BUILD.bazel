@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "anomaly.go",
+        "counter.go",
+        "histogram.go",
+        "ratio.go",
+        "roundtrip.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/memmetrics",
+    importpath = "github.com/vulcand/oxy/memmetrics",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/codahale/hdrhistogram:go_default_library",
+        "//vendor/github.com/mailgun/timetools:go_default_library",
+    ],
+)

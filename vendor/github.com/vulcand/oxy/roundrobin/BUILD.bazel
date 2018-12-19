@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "RequestRewriteListener.go",
+        "rebalancer.go",
+        "rr.go",
+        "stickysessions.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/roundrobin",
+    importpath = "github.com/vulcand/oxy/roundrobin",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/mailgun/timetools:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/vulcand/oxy/memmetrics:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)

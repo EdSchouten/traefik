@@ -1,0 +1,59 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "config.go",
+        "docker.go",
+        "docker_unix.go",
+        "docker_windows.go",
+    ],
+    importpath = "github.com/containous/traefik/old/provider/docker",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//job:go_default_library",
+        "//old/log:go_default_library",
+        "//old/provider:go_default_library",
+        "//old/provider/label:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/BurntSushi/ty/fun:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/docker/docker/api/types:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/container:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/events:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/filters:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/swarm:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/versions:go_default_library",
+        "//vendor/github.com/docker/docker/client:go_default_library",
+        "//vendor/github.com/docker/go-connections/nat:go_default_library",
+        "//vendor/github.com/docker/go-connections/sockets:go_default_library",
+        "//version:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "builder_test.go",
+        "config_container_docker_test.go",
+        "config_container_swarm_test.go",
+        "config_segment_test.go",
+        "swarm_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/provider/label:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/davecgh/go-spew/spew:go_default_library",
+        "//vendor/github.com/docker/docker/api/types:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/container:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/network:go_default_library",
+        "//vendor/github.com/docker/docker/api/types/swarm:go_default_library",
+        "//vendor/github.com/docker/docker/client:go_default_library",
+        "//vendor/github.com/docker/go-connections/nat:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

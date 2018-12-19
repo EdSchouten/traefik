@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "config.go",
+        "helpers.go",
+        "metrics.go",
+    ],
+    importpath = "github.com/containous/traefik/testhelpers",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//vendor/github.com/go-kit/kit/metrics:go_default_library",
+    ],
+)

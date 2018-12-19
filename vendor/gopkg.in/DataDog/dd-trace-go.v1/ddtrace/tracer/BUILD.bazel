@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "context.go",
+        "doc.go",
+        "errors.go",
+        "option.go",
+        "payload.go",
+        "propagator.go",
+        "rand.go",
+        "sampler.go",
+        "span.go",
+        "span_msgp.go",
+        "spancontext.go",
+        "textmap.go",
+        "time.go",
+        "time_windows.go",
+        "tracer.go",
+        "transport.go",
+        "util.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer",
+    importpath = "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/tinylib/msgp/msgp:go_default_library",
+        "//vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace:go_default_library",
+        "//vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext:go_default_library",
+        "//vendor/gopkg.in/DataDog/dd-trace-go.v1/ddtrace/internal:go_default_library",
+    ] + select({
+        "@io_bazel_rules_go//go/platform:windows": [
+            "//vendor/golang.org/x/sys/windows:go_default_library",
+        ],
+        "//conditions:default": [],
+    }),
+)

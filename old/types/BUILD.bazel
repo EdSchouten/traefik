@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dns_resolvers.go",
+        "domains.go",
+        "internal_router.go",
+        "logs.go",
+        "types.go",
+    ],
+    importpath = "github.com/containous/traefik/old/types",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ip:go_default_library",
+        "//old/log:go_default_library",
+        "//tls:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/mitchellh/hashstructure:go_default_library",
+        "//vendor/github.com/ryanuber/go-glob:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "domain_test.go",
+        "logs_test.go",
+        "types_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//ip:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

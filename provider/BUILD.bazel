@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "base_provider.go",
+        "provider.go",
+    ],
+    importpath = "github.com/containous/traefik/provider",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//autogen/gentemplates:go_default_library",
+        "//config:go_default_library",
+        "//log:go_default_library",
+        "//safe:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+        "//vendor/github.com/Masterminds/sprig:go_default_library",
+    ],
+)

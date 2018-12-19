@@ -1,0 +1,42 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["middlewares.go"],
+    importpath = "github.com/containous/traefik/server/middleware",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//middlewares/addprefix:go_default_library",
+        "//middlewares/auth:go_default_library",
+        "//middlewares/buffering:go_default_library",
+        "//middlewares/chain:go_default_library",
+        "//middlewares/circuitbreaker:go_default_library",
+        "//middlewares/compress:go_default_library",
+        "//middlewares/customerrors:go_default_library",
+        "//middlewares/headers:go_default_library",
+        "//middlewares/ipwhitelist:go_default_library",
+        "//middlewares/maxconnection:go_default_library",
+        "//middlewares/passtlsclientcert:go_default_library",
+        "//middlewares/ratelimiter:go_default_library",
+        "//middlewares/redirect:go_default_library",
+        "//middlewares/replacepath:go_default_library",
+        "//middlewares/replacepathregex:go_default_library",
+        "//middlewares/retry:go_default_library",
+        "//middlewares/stripprefix:go_default_library",
+        "//middlewares/stripprefixregex:go_default_library",
+        "//middlewares/tracing:go_default_library",
+        "//vendor/github.com/containous/alice:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["middlewares_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//config:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

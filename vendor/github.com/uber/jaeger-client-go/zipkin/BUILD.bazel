@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "doc.go",
+        "propagation.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/uber/jaeger-client-go/zipkin",
+    importpath = "github.com/uber/jaeger-client-go/zipkin",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/github.com/uber/jaeger-client-go:go_default_library",
+    ],
+)

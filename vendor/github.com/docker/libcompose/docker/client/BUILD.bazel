@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "client.go",
+        "client_factory.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/docker/libcompose/docker/client",
+    importpath = "github.com/docker/libcompose/docker/client",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/docker/cli/cli/config:go_default_library",
+        "//vendor/github.com/docker/docker/client:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/homedir:go_default_library",
+        "//vendor/github.com/docker/go-connections/sockets:go_default_library",
+        "//vendor/github.com/docker/go-connections/tlsconfig:go_default_library",
+        "//vendor/github.com/docker/libcompose/project:go_default_library",
+        "//vendor/github.com/docker/libcompose/version:go_default_library",
+    ],
+)

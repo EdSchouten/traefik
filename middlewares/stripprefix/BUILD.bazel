@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["strip_prefix.go"],
+    importpath = "github.com/containous/traefik/middlewares/stripprefix",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//middlewares:go_default_library",
+        "//tracing:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["strip_prefix_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//config:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

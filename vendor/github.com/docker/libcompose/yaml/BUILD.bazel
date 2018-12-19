@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "build.go",
+        "command.go",
+        "external.go",
+        "network.go",
+        "types_yaml.go",
+        "ulimit.go",
+        "volume.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/docker/libcompose/yaml",
+    importpath = "github.com/docker/libcompose/yaml",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/docker/docker/api/types/strslice:go_default_library",
+        "//vendor/github.com/docker/go-units:go_default_library",
+        "//vendor/github.com/flynn/go-shlex:go_default_library",
+    ],
+)

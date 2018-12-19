@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["boltdb.go"],
+    importpath = "github.com/containous/traefik/old/provider/boltdb",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/provider:go_default_library",
+        "//old/provider/kv:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store/boltdb:go_default_library",
+    ],
+)

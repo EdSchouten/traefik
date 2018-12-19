@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "convert.go",
+        "hash.go",
+        "interpolation.go",
+        "merge.go",
+        "merge_v1.go",
+        "merge_v2.go",
+        "schema.go",
+        "schema_helpers.go",
+        "types.go",
+        "utils.go",
+        "validation.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/docker/libcompose/config",
+    importpath = "github.com/docker/libcompose/config",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/docker/docker/pkg/urlutil:go_default_library",
+        "//vendor/github.com/docker/go-connections/nat:go_default_library",
+        "//vendor/github.com/docker/libcompose/utils:go_default_library",
+        "//vendor/github.com/docker/libcompose/yaml:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/xeipuuv/gojsonschema:go_default_library",
+        "//vendor/gopkg.in/yaml.v2:go_default_library",
+    ],
+)

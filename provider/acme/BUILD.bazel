@@ -1,0 +1,47 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "account.go",
+        "challenge_http.go",
+        "challenge_tls.go",
+        "local_store.go",
+        "local_store_unix.go",
+        "local_store_windows.go",
+        "provider.go",
+        "store.go",
+    ],
+    importpath = "github.com/containous/traefik/provider/acme",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//log:go_default_library",
+        "//rules:go_default_library",
+        "//safe:go_default_library",
+        "//tls:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/xenolf/lego/acme:go_default_library",
+        "//vendor/github.com/xenolf/lego/log:go_default_library",
+        "//vendor/github.com/xenolf/lego/providers/dns:go_default_library",
+        "//version:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["provider_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//safe:go_default_library",
+        "//tls:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/xenolf/lego/acme:go_default_library",
+    ],
+)

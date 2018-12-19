@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["ttlmap.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/mailgun/ttlmap",
+    importpath = "github.com/mailgun/ttlmap",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/mailgun/minheap:go_default_library",
+        "//vendor/github.com/mailgun/timetools:go_default_library",
+    ],
+)

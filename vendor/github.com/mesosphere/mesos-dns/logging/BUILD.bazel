@@ -1,0 +1,10 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["logging.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/mesosphere/mesos-dns/logging",
+    importpath = "github.com/mesosphere/mesos-dns/logging",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/golang/glog:go_default_library"],
+)

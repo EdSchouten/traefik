@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "configuration.go",
+        "consumer_key.go",
+        "error.go",
+        "ovh.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/ovh/go-ovh/ovh",
+    importpath = "github.com/ovh/go-ovh/ovh",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/gopkg.in/ini.v1:go_default_library"],
+)

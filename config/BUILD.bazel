@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dyn_config.go",
+        "middlewares.go",
+    ],
+    importpath = "github.com/containous/traefik/config",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//ip:go_default_library",
+        "//tls:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+    ],
+)

@@ -1,0 +1,47 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "capture_request_reader.go",
+        "capture_response_writer.go",
+        "logdata.go",
+        "logger.go",
+        "logger_formatters.go",
+        "parser.go",
+        "save_backend.go",
+        "save_frontend.go",
+        "save_retries.go",
+        "save_username.go",
+    ],
+    importpath = "github.com/containous/traefik/old/middlewares/accesslog",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/middlewares:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/urfave/negroni:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "logger_formatters_test.go",
+        "logger_test.go",
+        "parser_test.go",
+        "save_retries_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

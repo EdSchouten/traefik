@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "buffer.go",
+        "threshold.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/buffer",
+    importpath = "github.com/vulcand/oxy/buffer",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/mailgun/multibuf:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+        "//vendor/github.com/vulcand/predicate:go_default_library",
+    ],
+)

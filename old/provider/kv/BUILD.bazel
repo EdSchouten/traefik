@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "keynames.go",
+        "kv.go",
+        "kv_config.go",
+    ],
+    importpath = "github.com/containous/traefik/old/provider/kv",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//job:go_default_library",
+        "//old/log:go_default_library",
+        "//old/provider:go_default_library",
+        "//old/provider/label:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//tls:go_default_library",
+        "//vendor/github.com/BurntSushi/ty/fun:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "filler_test.go",
+        "kv_config_test.go",
+        "kv_mock_test.go",
+        "kv_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/provider/label:go_default_library",
+        "//old/types:go_default_library",
+        "//tls:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

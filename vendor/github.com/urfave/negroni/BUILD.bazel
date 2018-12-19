@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "doc.go",
+        "logger.go",
+        "negroni.go",
+        "recovery.go",
+        "response_writer.go",
+        "static.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/urfave/negroni",
+    importpath = "github.com/urfave/negroni",
+    visibility = ["//visibility:public"],
+)

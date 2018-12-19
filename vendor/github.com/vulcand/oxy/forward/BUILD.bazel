@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "fwd.go",
+        "headers.go",
+        "post_config.go",
+        "post_config_18.go",
+        "rewrite.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/forward",
+    importpath = "github.com/vulcand/oxy/forward",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/gorilla/websocket:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)

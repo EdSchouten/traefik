@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "hostresolver.go",
+        "request_decorator.go",
+    ],
+    importpath = "github.com/containous/traefik/middlewares/requestdecorator",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config/static:go_default_library",
+        "//log:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/alice:go_default_library",
+        "//vendor/github.com/miekg/dns:go_default_library",
+        "//vendor/github.com/patrickmn/go-cache:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "hostresolver_test.go",
+        "request_decorator_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//config/static:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

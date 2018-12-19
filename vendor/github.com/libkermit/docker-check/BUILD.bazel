@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "check.go",
+        "containers.go",
+        "images.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/libkermit/docker-check",
+    importpath = "github.com/libkermit/docker-check",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/docker/docker/api/types:go_default_library",
+        "//vendor/github.com/docker/docker/client:go_default_library",
+        "//vendor/github.com/go-check/check:go_default_library",
+        "//vendor/github.com/libkermit/docker:go_default_library",
+    ],
+)

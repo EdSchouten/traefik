@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "account_info.go",
+        "applications.go",
+        "block_storage.go",
+        "client.go",
+        "dns.go",
+        "firewall.go",
+        "ip.go",
+        "iso.go",
+        "os.go",
+        "plans.go",
+        "regions.go",
+        "reservedip.go",
+        "scripts.go",
+        "servers.go",
+        "snapshots.go",
+        "sshkeys.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/JamesClonk/vultr/lib",
+    importpath = "github.com/JamesClonk/vultr/lib",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/juju/ratelimit:go_default_library"],
+)

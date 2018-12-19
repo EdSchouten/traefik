@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "constants.go",
+        "mesosprotoutil.go",
+        "node.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/mesos/mesos-go/mesosutil",
+    importpath = "github.com/mesos/mesos-go/mesosutil",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/gogo/protobuf/proto:go_default_library",
+        "//vendor/github.com/golang/glog:go_default_library",
+        "//vendor/github.com/mesos/mesos-go/mesosproto:go_default_library",
+    ],
+)

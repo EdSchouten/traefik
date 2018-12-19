@@ -1,0 +1,41 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "auth.go",
+        "basic_auth.go",
+        "digest_auth.go",
+        "forward.go",
+    ],
+    importpath = "github.com/containous/traefik/middlewares/auth",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//middlewares:go_default_library",
+        "//middlewares/accesslog:go_default_library",
+        "//tracing:go_default_library",
+        "//vendor/github.com/abbot/go-http-auth:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+        "//vendor/github.com/vulcand/oxy/forward:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "basic_auth_test.go",
+        "digest_auth_request_test.go",
+        "digest_auth_test.go",
+        "forward_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//config:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+        "//vendor/github.com/vulcand/oxy/forward:go_default_library",
+    ],
+)

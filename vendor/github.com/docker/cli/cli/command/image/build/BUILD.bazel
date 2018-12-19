@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "context.go",
+        "context_unix.go",
+        "context_windows.go",
+        "dockerignore.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/docker/cli/cli/command/image/build",
+    importpath = "github.com/docker/cli/cli/command/image/build",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/docker/docker/builder/dockerignore:go_default_library",
+        "//vendor/github.com/docker/docker/builder/remotecontext/git:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/archive:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/fileutils:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/ioutils:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/pools:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/progress:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/streamformatter:go_default_library",
+        "//vendor/github.com/docker/docker/pkg/stringid:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+    ] + select({
+        "@io_bazel_rules_go//go/platform:windows": [
+            "//vendor/github.com/docker/docker/pkg/longpath:go_default_library",
+        ],
+        "//conditions:default": [],
+    }),
+)

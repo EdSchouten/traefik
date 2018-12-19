@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "handler_switcher.go",
+        "middleware.go",
+        "stateful.go",
+    ],
+    importpath = "github.com/containous/traefik/middlewares",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)

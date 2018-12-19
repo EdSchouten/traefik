@@ -1,0 +1,10 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["env.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/xenolf/lego/platform/config/env",
+    importpath = "github.com/xenolf/lego/platform/config/env",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/xenolf/lego/log:go_default_library"],
+)

@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "authentication.pb.go",
+        "authorizer.pb.go",
+        "containerizer.pb.go",
+        "internal.pb.go",
+        "log.pb.go",
+        "mesos.pb.go",
+        "messages.pb.go",
+        "registry.pb.go",
+        "scheduler.pb.go",
+        "state.pb.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/mesos/mesos-go/mesosproto",
+    importpath = "github.com/mesos/mesos-go/mesosproto",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/gogo/protobuf/proto:go_default_library"],
+)

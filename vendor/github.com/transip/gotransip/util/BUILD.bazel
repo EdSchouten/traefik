@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["util.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/transip/gotransip/util",
+    importpath = "github.com/transip/gotransip/util",
+    visibility = ["//visibility:public"],
+)

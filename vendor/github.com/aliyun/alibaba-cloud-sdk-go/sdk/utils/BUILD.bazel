@@ -1,0 +1,10 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["utils.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/aliyun/alibaba-cloud-sdk-go/sdk/utils",
+    importpath = "github.com/aliyun/alibaba-cloud-sdk-go/sdk/utils",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/satori/go.uuid:go_default_library"],
+)

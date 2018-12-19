@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["file.go"],
+    importpath = "github.com/containous/traefik/old/provider/file",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/provider:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//tls:go_default_library",
+        "//vendor/github.com/pkg/errors:go_default_library",
+        "//vendor/gopkg.in/fsnotify.v1:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["file_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+    ],
+)

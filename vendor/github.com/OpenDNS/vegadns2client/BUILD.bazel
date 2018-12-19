@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "client.go",
+        "domains.go",
+        "main.go",
+        "records.go",
+        "tokens.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/OpenDNS/vegadns2client",
+    importpath = "github.com/OpenDNS/vegadns2client",
+    visibility = ["//visibility:public"],
+)

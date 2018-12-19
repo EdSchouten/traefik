@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["zipkin.go"],
+    importpath = "github.com/containous/traefik/tracing/zipkin",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/github.com/openzipkin/zipkin-go-opentracing:go_default_library",
+    ],
+)

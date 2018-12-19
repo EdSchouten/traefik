@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["tilde.go"],
+    importmap = "github.com/containous/traefik/vendor/gopkg.in/mattes/go-expand-tilde.v1",
+    importpath = "gopkg.in/mattes/go-expand-tilde.v1",
+    visibility = ["//visibility:public"],
+)

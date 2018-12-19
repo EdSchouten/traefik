@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["rest.go"],
+    importpath = "github.com/containous/traefik/old/provider/rest",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/unrolled/render:go_default_library",
+    ],
+)

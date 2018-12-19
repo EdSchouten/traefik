@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["healthcheck.go"],
+    importpath = "github.com/containous/traefik/healthcheck",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/go-kit/kit/metrics:go_default_library",
+        "//vendor/github.com/vulcand/oxy/roundrobin:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["healthcheck_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+        "//vendor/github.com/vulcand/oxy/roundrobin:go_default_library",
+    ],
+)

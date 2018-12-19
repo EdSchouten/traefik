@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["rules.go"],
+    importpath = "github.com/containous/traefik/rules",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//hostresolver:go_default_library",
+        "//old/middlewares:go_default_library",
+        "//old/types:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["rules_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//old/middlewares:go_default_library",
+        "//old/types:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

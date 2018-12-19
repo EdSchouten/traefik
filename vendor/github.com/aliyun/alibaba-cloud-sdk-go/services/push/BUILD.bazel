@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "push_notice_to_android.go",
+        "push_notice_toi_os.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/aliyun/alibaba-cloud-sdk-go/services/push",
+    importpath = "github.com/aliyun/alibaba-cloud-sdk-go/services/push",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests:go_default_library",
+        "//vendor/github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses:go_default_library",
+    ],
+)

@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["storeconfig.go"],
+    importpath = "github.com/containous/traefik/cmd/storeconfig",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//acme:go_default_library",
+        "//cluster:go_default_library",
+        "//cmd:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/containous/flaeg:go_default_library",
+        "//vendor/github.com/containous/staert:go_default_library",
+    ],
+)

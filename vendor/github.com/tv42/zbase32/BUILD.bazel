@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "flag.go",
+        "zbase32.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/tv42/zbase32",
+    importpath = "github.com/tv42/zbase32",
+    visibility = ["//visibility:public"],
+)

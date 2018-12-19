@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["buffer.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/mailgun/multibuf",
+    importpath = "github.com/mailgun/multibuf",
+    visibility = ["//visibility:public"],
+)

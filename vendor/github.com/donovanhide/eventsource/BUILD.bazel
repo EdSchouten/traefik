@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "decoder.go",
+        "encoder.go",
+        "interface.go",
+        "normalise.go",
+        "repository.go",
+        "server.go",
+        "stream.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/donovanhide/eventsource",
+    importpath = "github.com/donovanhide/eventsource",
+    visibility = ["//visibility:public"],
+)

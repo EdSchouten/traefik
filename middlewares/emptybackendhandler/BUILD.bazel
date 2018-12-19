@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["empty_backend_handler.go"],
+    importpath = "github.com/containous/traefik/middlewares/emptybackendhandler",
+    visibility = ["//visibility:public"],
+    deps = ["//healthcheck:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["empty_backend_handler_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/vulcand/oxy/roundrobin:go_default_library",
+    ],
+)

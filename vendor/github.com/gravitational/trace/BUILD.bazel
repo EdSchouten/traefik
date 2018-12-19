@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "errors.go",
+        "httplib.go",
+        "log.go",
+        "trace.go",
+        "udphook.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/gravitational/trace",
+    importpath = "github.com/gravitational/trace",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/jonboulle/clockwork:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/golang.org/x/net/context:go_default_library",
+    ],
+)

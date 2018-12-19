@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["retry.go"],
+    importpath = "github.com/containous/traefik/middlewares/retry",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//config:go_default_library",
+        "//middlewares:go_default_library",
+        "//tracing:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["retry_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//config:go_default_library",
+        "//middlewares/emptybackendhandler:go_default_library",
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/gorilla/websocket:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+        "//vendor/github.com/vulcand/oxy/forward:go_default_library",
+        "//vendor/github.com/vulcand/oxy/roundrobin:go_default_library",
+    ],
+)

@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "candidate.go",
+        "follower.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/docker/leadership",
+    importpath = "github.com/docker/leadership",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/abronan/valkeyrie/store:go_default_library"],
+)

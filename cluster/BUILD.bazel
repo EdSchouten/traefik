@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "datastore.go",
+        "leadership.go",
+        "store.go",
+    ],
+    importpath = "github.com/containous/traefik/cluster",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//job:go_default_library",
+        "//log:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/containous/staert:go_default_library",
+        "//vendor/github.com/docker/leadership:go_default_library",
+        "//vendor/github.com/satori/go.uuid:go_default_library",
+        "//vendor/github.com/unrolled/render:go_default_library",
+    ],
+)

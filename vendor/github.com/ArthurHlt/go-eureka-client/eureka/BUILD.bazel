@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "client.go",
+        "cluster.go",
+        "debug.go",
+        "delete.go",
+        "error.go",
+        "get.go",
+        "metadata_marshaller.go",
+        "post.go",
+        "put.go",
+        "requests.go",
+        "response.go",
+        "version.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/ArthurHlt/go-eureka-client/eureka",
+    importpath = "github.com/ArthurHlt/go-eureka-client/eureka",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/ArthurHlt/gominlog:go_default_library"],
+)

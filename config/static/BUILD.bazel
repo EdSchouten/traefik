@@ -1,0 +1,51 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "entrypoints.go",
+        "static_config.go",
+    ],
+    importpath = "github.com/containous/traefik/config/static",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//acme:go_default_library",
+        "//log:go_default_library",
+        "//old/provider/boltdb:go_default_library",
+        "//old/provider/consul:go_default_library",
+        "//old/provider/consulcatalog:go_default_library",
+        "//old/provider/docker:go_default_library",
+        "//old/provider/dynamodb:go_default_library",
+        "//old/provider/ecs:go_default_library",
+        "//old/provider/etcd:go_default_library",
+        "//old/provider/eureka:go_default_library",
+        "//old/provider/kubernetes:go_default_library",
+        "//old/provider/marathon:go_default_library",
+        "//old/provider/mesos:go_default_library",
+        "//old/provider/rancher:go_default_library",
+        "//old/provider/zk:go_default_library",
+        "//ping:go_default_library",
+        "//provider/acme:go_default_library",
+        "//provider/file:go_default_library",
+        "//provider/rest:go_default_library",
+        "//tls:go_default_library",
+        "//tracing/datadog:go_default_library",
+        "//tracing/jaeger:go_default_library",
+        "//tracing/zipkin:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/containous/flaeg/parse:go_default_library",
+        "//vendor/github.com/elazarl/go-bindata-assetfs:go_default_library",
+        "//vendor/github.com/xenolf/lego/acme:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["entrypoints_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//tls:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

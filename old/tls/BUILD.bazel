@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "certificate.go",
+        "certificate_store.go",
+        "tls.go",
+    ],
+    importpath = "github.com/containous/traefik/old/tls",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//safe:go_default_library",
+        "//tls/generate:go_default_library",
+        "//vendor/github.com/patrickmn/go-cache:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)

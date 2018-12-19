@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "bucket.go",
+        "bucketset.go",
+        "tokenlimiter.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/ratelimit",
+    importpath = "github.com/vulcand/oxy/ratelimit",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/mailgun/timetools:go_default_library",
+        "//vendor/github.com/mailgun/ttlmap:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/vulcand/oxy/utils:go_default_library",
+    ],
+)

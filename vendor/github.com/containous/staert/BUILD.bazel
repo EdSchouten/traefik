@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "kv.go",
+        "staert.go",
+        "toml.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/containous/staert",
+    importpath = "github.com/containous/staert",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/BurntSushi/toml:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie:go_default_library",
+        "//vendor/github.com/abronan/valkeyrie/store:go_default_library",
+        "//vendor/github.com/containous/flaeg:go_default_library",
+        "//vendor/github.com/mitchellh/mapstructure:go_default_library",
+    ],
+)

@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "bool.go",
+        "duration.go",
+        "flag.go",
+        "float32.go",
+        "float64.go",
+        "int.go",
+        "int32.go",
+        "int64.go",
+        "int8.go",
+        "ip.go",
+        "ipmask.go",
+        "string.go",
+        "uint.go",
+        "uint16.go",
+        "uint32.go",
+        "uint64.go",
+        "uint8.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/ogier/pflag",
+    importpath = "github.com/ogier/pflag",
+    visibility = ["//visibility:public"],
+)

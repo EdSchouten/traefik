@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "api.go",
+        "parse.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/iij/doapi",
+    importpath = "github.com/iij/doapi",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/iij/doapi/protocol:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)

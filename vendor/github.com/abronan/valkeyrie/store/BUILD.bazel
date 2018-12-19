@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "helpers.go",
+        "store.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/abronan/valkeyrie/store",
+    importpath = "github.com/abronan/valkeyrie/store",
+    visibility = ["//visibility:public"],
+)

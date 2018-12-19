@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["compress.go"],
+    importpath = "github.com/containous/traefik/middlewares/compress",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//middlewares:go_default_library",
+        "//tracing:go_default_library",
+        "//vendor/github.com/NYTimes/gziphandler:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go/ext:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["compress_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//testhelpers:go_default_library",
+        "//vendor/github.com/NYTimes/gziphandler:go_default_library",
+        "//vendor/github.com/stretchr/testify/assert:go_default_library",
+        "//vendor/github.com/stretchr/testify/require:go_default_library",
+    ],
+)

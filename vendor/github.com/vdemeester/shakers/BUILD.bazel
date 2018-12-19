@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "bool.go",
+        "common.go",
+        "string.go",
+        "time.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vdemeester/shakers",
+    importpath = "github.com/vdemeester/shakers",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/go-check/check:go_default_library"],
+)

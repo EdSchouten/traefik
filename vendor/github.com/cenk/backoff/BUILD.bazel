@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "backoff.go",
+        "context.go",
+        "exponential.go",
+        "retry.go",
+        "ticker.go",
+        "tries.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/cenk/backoff",
+    importpath = "github.com/cenk/backoff",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/golang.org/x/net/context:go_default_library"],
+)

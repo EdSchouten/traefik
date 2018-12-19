@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "auth.go",
+        "dumpreq.go",
+        "handler.go",
+        "netutils.go",
+        "source.go",
+    ],
+    importmap = "github.com/containous/traefik/vendor/github.com/vulcand/oxy/utils",
+    importpath = "github.com/vulcand/oxy/utils",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/sirupsen/logrus:go_default_library"],
+)

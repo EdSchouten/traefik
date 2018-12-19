@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["masters.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/mesosphere/mesos-dns/detect",
+    importpath = "github.com/mesosphere/mesos-dns/detect",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/mesos/mesos-go/detector:go_default_library",
+        "//vendor/github.com/mesos/mesos-go/mesosproto:go_default_library",
+        "//vendor/github.com/mesosphere/mesos-dns/logging:go_default_library",
+    ],
+)

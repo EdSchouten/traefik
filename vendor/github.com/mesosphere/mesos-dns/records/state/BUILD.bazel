@@ -1,0 +1,10 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["state.go"],
+    importmap = "github.com/containous/traefik/vendor/github.com/mesosphere/mesos-dns/records/state",
+    importpath = "github.com/mesosphere/mesos-dns/records/state",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/mesos/mesos-go/upid:go_default_library"],
+)

@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "jaeger.go",
+        "logger.go",
+    ],
+    importpath = "github.com/containous/traefik/tracing/jaeger",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//log:go_default_library",
+        "//vendor/github.com/opentracing/opentracing-go:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/uber/jaeger-client-go/config:go_default_library",
+        "//vendor/github.com/uber/jaeger-client-go/zipkin:go_default_library",
+        "//vendor/github.com/uber/jaeger-lib/metrics:go_default_library",
+    ],
+)

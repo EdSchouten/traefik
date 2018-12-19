@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "dashboard.go",
+        "debug.go",
+        "handler.go",
+    ],
+    importpath = "github.com/containous/traefik/old/api",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//old/log:go_default_library",
+        "//old/middlewares:go_default_library",
+        "//old/types:go_default_library",
+        "//safe:go_default_library",
+        "//vendor/github.com/containous/mux:go_default_library",
+        "//vendor/github.com/elazarl/go-bindata-assetfs:go_default_library",
+        "//vendor/github.com/thoas/stats:go_default_library",
+        "//vendor/github.com/unrolled/render:go_default_library",
+        "//version:go_default_library",
+    ],
+)
