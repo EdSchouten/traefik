@@ -7,14 +7,6 @@ gazelle(
     external = "external",
 )
 
-filegroup(
-    name = "static",
-    srcs = glob(["static/**"]),
-    visibility = ["//autogen/genstatic:__pkg__"],
-)
-
-exports_files(["README.md"])
-
 go_library(
     name = "go_default_library",
     srcs = ["generate.go"],
