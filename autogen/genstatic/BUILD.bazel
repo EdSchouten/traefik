@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+genrule(
+    name = "gen",
+    srcs = [
+        "//:static",
+        "//:README.md",
+    ],
+    outs = ["gen.go"],
+    cmd = "$(location @com_github_containous_go_bindata//go-bindata) -prefix $$(dirname $(location //:README.md)) -pkg genstatic -nocompress -o $@ $(locations //:static)",
+    tools = ["@com_github_containous_go_bindata//go-bindata"],
+)
+
+go_library(
+    name = "go_default_library",
+    srcs = ["gen.go"],
+    importpath = "github.com/containous/traefik/autogen/genstatic",
+    visibility = ["//visibility:public"],
+)

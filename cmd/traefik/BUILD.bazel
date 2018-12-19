@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["traefik.go"],
+    importpath = "github.com/containous/traefik/cmd/traefik",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//autogen/genstatic:go_default_library",
+        "//cmd:go_default_library",
+        "//cmd/bug:go_default_library",
+        "//cmd/healthcheck:go_default_library",
+        "//cmd/storeconfig:go_default_library",
+        "//cmd/version:go_default_library",
+        "//collector:go_default_library",
+        "//config:go_default_library",
+        "//config/static:go_default_library",
+        "//job:go_default_library",
+        "//log:go_default_library",
+        "//old/provider/ecs:go_default_library",
+        "//old/provider/kubernetes:go_default_library",
+        "//old/types:go_default_library",
+        "//provider/aggregator:go_default_library",
+        "//safe:go_default_library",
+        "//server:go_default_library",
+        "//server/router:go_default_library",
+        "//tls:go_default_library",
+        "//types:go_default_library",
+        "//vendor/github.com/cenk/backoff:go_default_library",
+        "//vendor/github.com/containous/flaeg:go_default_library",
+        "//vendor/github.com/containous/staert:go_default_library",
+        "//vendor/github.com/coreos/go-systemd/daemon:go_default_library",
+        "//vendor/github.com/elazarl/go-bindata-assetfs:go_default_library",
+        "//vendor/github.com/ogier/pflag:go_default_library",
+        "//vendor/github.com/sirupsen/logrus:go_default_library",
+        "//vendor/github.com/vulcand/oxy/roundrobin:go_default_library",
+        "//version:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "traefik",
+    embed = [":go_default_library"],
+    pure = "on",
+    visibility = ["//visibility:public"],
+)
